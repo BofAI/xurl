@@ -29,6 +29,42 @@ func (c *stubChatClient) SendRequest(opts api.RequestOptions) (json.RawMessage, 
 	return json.RawMessage(`{"data":{}}`), nil
 }
 
+type emptyChatEventsClient struct {
+	api.Client
+}
+
+func (c *emptyChatEventsClient) SendRequest(opts api.RequestOptions) (json.RawMessage, error) {
+	if strings.Contains(opts.Endpoint, "/events?") {
+		return json.RawMessage(`{"data":null,"meta":{"conversation_key_events":null}}`), nil
+	}
+	if strings.HasPrefix(opts.Endpoint, "/2/chat/conversations/") {
+		return json.RawMessage(`{"data":{"participant_ids":[],"member_ids":[],"admin_ids":[]}}`), nil
+	}
+	return json.RawMessage(`{"data":{}}`), nil
+}
+
+func TestLoadBacklogAcceptsNullEventList(t *testing.T) {
+	chat := chatxdk.New()
+	defer chat.Close()
+	_, err := chat.GenerateKeypairs()
+	require.NoError(t, err)
+
+	s := &chatSession{
+		chat:        chat,
+		client:      &emptyChatEventsClient{},
+		seenSenders: map[string]bool{},
+		loadedConvs: map[string]bool{},
+		convKeys:    map[string][]byte{},
+	}
+
+	result, events, nextToken, err := s.loadBacklog("1-2", 100, "")
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	assert.Empty(t, result.Messages)
+	assert.Empty(t, events)
+	assert.Empty(t, nextToken)
+}
+
 func TestResolveConversationForms(t *testing.T) {
 	s := &chatSession{userID: "42", client: &stubChatClient{lookupID: "100"}}
 

@@ -1,6 +1,6 @@
 {
   "name": "@bankofai/xurl",
-  "version": "1.3.2-beta.1",
+  "version": "1.3.2-beta.2",
   "description": "Auth-enabled curl-like CLI for the X API",
   "license": "MIT",
   "repository": {

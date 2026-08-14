@@ -1006,7 +1006,7 @@ func (s *chatSession) loadBacklog(conversationID string, maxResults int, paginat
 	s.ensureParticipantKeys(conversationID)
 	s.refreshSigningKeys(page.Events)
 	s.adoptKeyEvents(page.KeyEvents)
-	var eventsB64 []string
+	eventsB64 := make([]string, 0, len(page.Events))
 	for _, e := range page.Events {
 		if e.EncodedEvent != "" {
 			eventsB64 = append(eventsB64, e.EncodedEvent)
