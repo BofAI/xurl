@@ -1091,7 +1091,7 @@ func (s *chatSession) readConversation(conversationID string, maxResults int, as
 	})
 
 	if asJSON {
-		var events []json.RawMessage
+		events := make([]json.RawMessage, 0, len(messages))
 		for _, e := range messages {
 			events = append(events, e.Raw())
 		}
