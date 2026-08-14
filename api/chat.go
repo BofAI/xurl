@@ -101,7 +101,7 @@ func GetChatUsersPublicKeys(client Client, userIDs []string, opts RequestOptions
 	for _, userID := range userIDs {
 		userKeys, err := GetChatPublicKeys(client, userID, opts)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("failed to fetch public keys for user %s: %w", userID, err)
 		}
 		for i := range userKeys {
 			userKeys[i].UserID = userID

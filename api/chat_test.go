@@ -140,6 +140,25 @@ func TestGetChatUsersPublicKeysUsesPerUserRoutes(t *testing.T) {
 	assert.Equal(t, "1800", keys[1].Version)
 }
 
+func TestGetChatUsersPublicKeysIdentifiesFailedUserAndReturnsNoPartialKeys(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		if r.URL.Path == "/2/users/7/public_keys" {
+			_, _ = w.Write([]byte(`{"data":[{"public_key_version":"1700","public_key":"idpk7","signing_public_key":"sigpk7","identity_public_key_signature":"binding7"}]}`))
+			return
+		}
+		w.WriteHeader(http.StatusForbidden)
+		_, _ = w.Write([]byte(`{"error":"denied"}`))
+	}))
+	defer server.Close()
+	client := chatTestClient(t, server)
+
+	keys, err := GetChatUsersPublicKeys(client, []string{"7", "8"}, RequestOptions{})
+	require.Error(t, err)
+	assert.Nil(t, keys)
+	assert.Contains(t, err.Error(), "user 8")
+}
+
 func TestGetChatEvents(t *testing.T) {
 	var requests []*http.Request
 	var bodies []string
