@@ -8,7 +8,7 @@ const https = require("https");
 const http = require("http");
 
 const VERSION = require("./package.json").version;
-const REPO = "xdevplatform/xurl";
+const REPO = "BofAI/xurl";
 const BIN_DIR = path.join(__dirname, "binary");
 
 function getPlatform() {
