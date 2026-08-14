@@ -7,7 +7,7 @@ const fs = require("fs");
 const binary = path.join(__dirname, "binary", process.platform === "win32" ? "xurl.exe" : "xurl");
 
 if (!fs.existsSync(binary)) {
-  console.error("xurl binary not found. Try reinstalling: npm install -g @xdevplatform/xurl");
+  console.error("xurl binary not found. Try reinstalling: npm install -g @bankofai/xurl");
   process.exit(1);
 }
 
