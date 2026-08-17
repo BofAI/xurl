@@ -11,7 +11,7 @@ description: A curl-like CLI tool for making authenticated requests to the X (Tw
 
 ## Prerequisites
 
-This skill requires the `xurl` CLI utility: <https://github.com/xdevplatform/xurl>.
+This skill requires the `xurl` CLI utility: <https://github.com/BofAI/xurl>.
 
 Before using any command you must be authenticated. Run `xurl auth status` to check.
 
