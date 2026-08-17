@@ -2,7 +2,7 @@
 
 set -e
 
-GITHUB_REPO="xdevplatform/xurl"
+GITHUB_REPO="${GITHUB_REPO:-BofAI/xurl}"
 PROGRAM_NAME="xurl"
 
 # Install to ~/.local/bin by default (no sudo needed).
