@@ -16,25 +16,22 @@ A command-line tool for interacting with the X (formerly Twitter) API, supportin
 
 ## Installation
 
-### Homebrew (macOS)
-```bash
-brew install --cask xdevplatform/tap/xurl
-```
-
 ### npm
 ```bash
-npm install -g @xdevplatform/xurl
+npm install -g @bankofai/xurl
 ```
 
 ### Shell script (no sudo required)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/xdevplatform/xurl/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/BofAI/xurl/main/install.sh | bash
 ```
 Installs to `~/.local/bin`. If it's not in your PATH, the script will tell you what to add.
 
-### Go
+### Go (source)
 ```bash
-go install github.com/xdevplatform/xurl@latest
+git clone https://github.com/BofAI/xurl.git
+cd xurl
+go install .
 ```
 
 
@@ -287,7 +284,7 @@ Use it directly from any MCP client (Claude Desktop, Cursor, etc.) with a standa
   "mcpServers": {
     "xapi": {
       "command": "npx",
-      "args": ["-y", "@xdevplatform/xurl", "mcp", "https://api.x.com/mcp"],
+      "args": ["-y", "@bankofai/xurl", "mcp", "https://api.x.com/mcp"],
       "env": { "CLIENT_ID": "...", "CLIENT_SECRET": "..." },
       "startup_timeout_sec": 300
     }
@@ -426,10 +423,10 @@ Notes:
 - Private keys live in `~/.xurl/keys.yml` (mode 600). Losing it is safe as long as the
   Juicebox backup (made by the original client) still exists.
 - `chat` is supported on macOS (Intel/Apple Silicon) and Linux (amd64), and the release
-  binaries (Homebrew, npm, GitHub releases) include it on those platforms. On other
+  binaries (npm and GitHub releases) include it on those platforms. On other
   platforms (Windows, Linux arm64/i386) `xurl chat` prints a stub explaining it is
-  unavailable. Source builds on supported platforms need cgo:
-  `CGO_ENABLED=1 go install github.com/xdevplatform/xurl@latest`.
+  unavailable. From a `BofAI/xurl` source checkout, builds on supported platforms need cgo:
+  `CGO_ENABLED=1 go install .`.
 
 ## Token Storage
 
