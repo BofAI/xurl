@@ -4,6 +4,10 @@ All user-visible bugs and enhancements should be recorded here.
 
 ## Unreleased
 
+### Fixed
+
+- BankOfAI releases no longer attempt to publish the official `xdevplatform/homebrew-tap`, which previously failed after the GitHub assets had already uploaded. The npm publishing action now runs on its maintained Node 24-based release.
+
 ## v1.3.5 - 2026-10-22
 
 ### Security

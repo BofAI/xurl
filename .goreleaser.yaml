@@ -38,8 +38,8 @@ builds:
         # Ad-hoc sign so both darwin binaries carry a valid signature. The
         # native arm64 build is already linker-signed, but the cross-built
         # amd64 binary comes out unsigned. No Apple credentials involved;
-        # Gatekeeper quarantine is handled per install channel (the Homebrew
-        # cask strips it, and npm's programmatic download never sets it).
+        # Gatekeeper quarantine is handled per install channel; npm's
+        # programmatic download does not set it.
         - cmd: codesign -s - --force {{ .Path }}
 
   - id: linux-cgo
@@ -98,26 +98,6 @@ changelog:
     exclude:
       - "^docs:"
       - "^test:"
-
-homebrew_casks:
-  - name: xurl
-    repository:
-      owner: xdevplatform
-      name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_TAP_GITHUB_TOKEN }}"
-    homepage: "https://github.com/xdevplatform/xurl"
-    description: "Auth-enabled curl-like CLI for the X API"
-    # Homebrew 7.0 deprecated `postflight`. GoReleaser 2.18 still emits that
-    # stanza from hooks.post.install (goreleaser/goreleaser#6873). Until
-    # hooks.post.install_steps ships, emit postflight_steps via custom_block.
-    # {{ "{{staged_path}}" }} survives GoReleaser's template pass as Homebrew's
-    # install-time {{staged_path}} token.
-    custom_block: |
-      postflight_steps do
-        on_macos do
-          run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{ "{{staged_path}}" }}/xurl"]
-        end
-      end
 
 release:
   footer: >-
