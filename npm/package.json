@@ -9,6 +9,9 @@
   },
   "homepage": "https://github.com/BofAI/xurl",
   "keywords": ["x", "twitter", "api", "cli", "curl", "oauth"],
+  "engines": {
+    "node": ">=22.23.4 <23 || >=24.22.1 <25 || >=26.12.1 <27"
+  },
   "bin": {
     "xurl": "cli.js"
   },
