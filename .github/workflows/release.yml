@@ -29,11 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Node >= 22.14 is required for OIDC trusted publishing.
+      # Pin the patched Node 24 security release. A floating "24" can resolve
+      # to a vulnerable runner-cached build instead of the latest patch.
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "24"
+          node-version: "24.22.1"
 
       # npm >= 11.5 is required for OIDC trusted publishing. Deliberately no
       # registry-url / NODE_AUTH_TOKEN: a configured token (even an empty one)

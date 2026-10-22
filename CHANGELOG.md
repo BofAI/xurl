@@ -4,6 +4,10 @@ All user-visible bugs and enhancements should be recorded here.
 
 ## Unreleased
 
+### Security
+
+- The npm launcher now requires a patched Node.js release: 22.23.4+, 24.22.1+, or 26.12.1+ within the corresponding supported release line. The npm publishing workflow is pinned to Node.js 24.22.1 instead of a floating Node.js 24 runner version.
+
 ## v1.3.1 - 2026-07-21
 
 ### Changed
