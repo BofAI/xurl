@@ -80,7 +80,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Checkout main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           ref: main
           fetch-depth: 0
@@ -89,7 +89,7 @@ jobs:
           token: ${{ secrets.RELEASE_GITHUB_TOKEN || github.token }}
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v7
         with:
           go-version: "1.24"
 
@@ -188,7 +188,7 @@ jobs:
 
       - name: Run GoReleaser
         if: ${{ !inputs.dry_run }}
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@v7
         with:
           version: "~> v2"
           args: release --clean
@@ -235,5 +235,5 @@ jobs:
             echo "- version: \`${{ steps.meta.outputs.version }}\`"
             echo "- tag: \`${{ steps.meta.outputs.tag }}\`"
             echo "- release: https://github.com/${{ github.repository }}/releases/tag/${{ steps.meta.outputs.tag }}"
-            echo "- npm: \`@xdevplatform/xurl@${{ steps.meta.outputs.version }}\`"
+            echo "- npm: \`@bankofai/xurl@${{ steps.meta.outputs.version }}\`"
           } >> "$GITHUB_STEP_SUMMARY"
