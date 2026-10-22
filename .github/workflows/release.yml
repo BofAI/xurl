@@ -27,7 +27,7 @@ jobs:
       contents: read
       id-token: write # enables npm provenance and OIDC trusted publishing
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # Pin the patched Node 24 security release. A floating "24" can resolve
       # to a vulnerable runner-cached build instead of the latest patch.

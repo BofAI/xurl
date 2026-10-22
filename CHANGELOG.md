@@ -8,6 +8,24 @@ All user-visible bugs and enhancements should be recorded here.
 
 - The npm launcher now requires a patched Node.js release: 22.23.4+, 24.22.1+, or 26.12.1+ within the corresponding supported release line. The npm publishing workflow is pinned to Node.js 24.22.1 instead of a floating Node.js 24 runner version.
 
+## v1.3.4 - 2026-09-29
+
+### Fixed
+
+- Release binaries, the Homebrew cask, and the npm package now include the v1.3.3 `xurl chat add-members` fix. The v1.3.3 release stopped before publishing them because a restored Zig build cache left the checkout dirty; that cache directory is now ignored.
+
+## v1.3.3 - 2026-09-29
+
+### Fixed
+
+- `xurl chat add-members` no longer fails with "Invalid action signature" on a group whose message timer (`message_ttl_ms`) or screen-capture blocking setting (`screen_capture_blocking_enabled`) has been set. The signed group state left both out; it now carries the values from the conversation.
+
+## v1.3.2 - 2026-09-23
+
+### Fixed
+
+- Homebrew no longer prints a "Calling `postflight` is deprecated" warning when loading the `xurl` cask. The cask now uses `postflight_steps` for the same macOS quarantine cleanup.
+
 ## v1.3.1 - 2026-07-21
 
 ### Changed

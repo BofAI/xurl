@@ -749,7 +749,7 @@ Example MCP client config:
     "mcpServers": {
       "xapi": {
         "command": "npx",
-        "args": ["-y", "@xdevplatform/xurl", "mcp", "https://api.x.com/mcp"],
+        "args": ["-y", "@bankofai/xurl", "mcp", "https://api.x.com/mcp"],
         "env": { "CLIENT_ID": "...", "CLIENT_SECRET": "..." }
       }
     }
