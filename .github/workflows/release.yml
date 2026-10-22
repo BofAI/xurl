@@ -2,7 +2,7 @@ name: Release
 
 # npm publisher for the xurl launcher. This workflow only publishes to npm via
 # OIDC trusted publishing (npmjs.com binds the trusted publisher to this file).
-# Binaries, the GitHub release, and the Homebrew cask are produced by GoReleaser
+# Binaries and the GitHub release are produced by GoReleaser
 # inside the "Cut Release" workflow, which dispatches this one for the npm step.
 #
 # It is workflow_dispatch only. It deliberately does NOT trigger on tag pushes:
@@ -32,7 +32,7 @@ jobs:
       # Pin the patched Node 24 security release. A floating "24" can resolve
       # to a vulnerable runner-cached build instead of the latest patch.
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: "24.22.1"
 

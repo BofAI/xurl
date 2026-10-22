@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/BofAI/xurl"
+    "url": "git+https://github.com/BofAI/xurl.git"
   },
   "homepage": "https://github.com/BofAI/xurl",
   "keywords": ["x", "twitter", "api", "cli", "curl", "oauth"],

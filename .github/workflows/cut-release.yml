@@ -5,7 +5,7 @@
 #   2. Promote CHANGELOG.md "## Unreleased" → "## vX.Y.Z - <date>"
 #   3. Run tests
 #   4. Commit CHANGELOG on main, create annotated tag, push both
-#   5. Publish via GoReleaser (GitHub release + Homebrew) and npm
+#   5. Publish the GitHub release via GoReleaser, then publish npm
 #
 # The job runs on a macOS arm64 runner so GoReleaser can produce cgo builds
 # of `xurl chat` for every platform chat-xdk supports: darwin targets build
